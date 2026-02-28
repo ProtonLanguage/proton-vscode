@@ -1,0 +1,131 @@
+{
+  "name": "Proton# Dark",
+  "type": "dark",
+  "colors": {
+    "editor.background": "#1a1a1a",
+    "editor.foreground": "#f0f0f0",
+    "editorLineNumber.foreground": "#555555",
+    "editorLineNumber.activeForeground": "#FF6B00",
+    "editor.selectionBackground": "#FF6B0033",
+    "editor.lineHighlightBackground": "#222222",
+    "editorCursor.foreground": "#FF6B00",
+    "editor.findMatchBackground": "#FF6B0044",
+    "editor.findMatchHighlightBackground": "#FF6B0022",
+    "editorBracketMatch.background": "#FF6B0022",
+    "editorBracketMatch.border": "#FF6B00",
+    "activityBar.background": "#111111",
+    "activityBar.foreground": "#f0f0f0",
+    "activityBarBadge.background": "#FF6B00",
+    "sideBar.background": "#1a1a1a",
+    "sideBar.foreground": "#aaaaaa",
+    "sideBarTitle.foreground": "#FF6B00",
+    "statusBar.background": "#FF6B00",
+    "statusBar.foreground": "#ffffff",
+    "titleBar.activeBackground": "#111111",
+    "titleBar.activeForeground": "#f0f0f0",
+    "tab.activeBackground": "#1a1a1a",
+    "tab.inactiveBackground": "#111111",
+    "tab.activeBorderTop": "#FF6B00",
+    "panel.background": "#111111",
+    "terminal.background": "#111111",
+    "terminal.foreground": "#f0f0f0",
+    "terminal.ansiBrightYellow": "#FF6B00"
+  },
+  "tokenColors": [
+    {
+      "name": "Comments",
+      "scope": ["comment", "comment.line", "comment.block"],
+      "settings": { "foreground": "#555555", "fontStyle": "italic" }
+    },
+    {
+      "name": "Strings",
+      "scope": ["string", "string.quoted"],
+      "settings": { "foreground": "#a8d8a8" }
+    },
+    {
+      "name": "Escape characters",
+      "scope": "constant.character.escape",
+      "settings": { "foreground": "#FF6B00" }
+    },
+    {
+      "name": "Control keywords",
+      "scope": "keyword.control.proton",
+      "settings": { "foreground": "#ff8c42", "fontStyle": "bold" }
+    },
+    {
+      "name": "Declaration keywords",
+      "scope": "keyword.declaration.proton",
+      "settings": { "foreground": "#FF6B00", "fontStyle": "bold" }
+    },
+    {
+      "name": "Logical operators",
+      "scope": "keyword.operator.logical.proton",
+      "settings": { "foreground": "#ff8c42", "fontStyle": "bold" }
+    },
+    {
+      "name": "Types",
+      "scope": "support.type.proton",
+      "settings": { "foreground": "#80cbc4" }
+    },
+    {
+      "name": "Constants",
+      "scope": "constant.language.proton",
+      "settings": { "foreground": "#87ceeb", "fontStyle": "bold" }
+    },
+    {
+      "name": "Numbers",
+      "scope": "constant.numeric.proton",
+      "settings": { "foreground": "#87ceeb" }
+    },
+    {
+      "name": "Arithmetic operators",
+      "scope": "keyword.operator.arithmetic.proton",
+      "settings": { "foreground": "#ff9999" }
+    },
+    {
+      "name": "Comparison operators",
+      "scope": "keyword.operator.comparison.proton",
+      "settings": { "foreground": "#ff9999" }
+    },
+    {
+      "name": "Assignment",
+      "scope": "keyword.operator.assignment.proton",
+      "settings": { "foreground": "#aaaaaa" }
+    },
+    {
+      "name": "String concat",
+      "scope": "keyword.operator.string.proton",
+      "settings": { "foreground": "#ff9999" }
+    },
+    {
+      "name": "Function names",
+      "scope": "entity.name.function.proton",
+      "settings": { "foreground": "#dda0dd" }
+    },
+    {
+      "name": "Built-in functions",
+      "scope": "support.function.builtin.proton",
+      "settings": { "foreground": "#dda0dd", "fontStyle": "bold" }
+    },
+    {
+      "name": "Datastore functions",
+      "scope": "support.function.datastore.proton",
+      "settings": { "foreground": "#FF6B00", "fontStyle": "bold" }
+    },
+    {
+      "name": "Function calls",
+      "scope": "variable.function.proton",
+      "settings": { "foreground": "#dda0dd" }
+    },
+    {
+      "name": "Module variables",
+      "scope": "variable.other.module.proton",
+      "settings": { "foreground": "#ffc800", "fontStyle": "bold" }
+    },
+    {
+      "name": "Backend hints",
+      "scope": "keyword.other.backend.proton",
+      "settings": { "foreground": "#FF6B00", "fontStyle": "bold italic" }
+    }
+  ]
+}
