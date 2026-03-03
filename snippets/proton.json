@@ -1,113 +1,128 @@
 {
   "Variable": {
     "prefix": "var",
-    "body": ["var:local ${1:name} = ${2:value};"],
+    "body": [
+      "var:local ${1:name} = ${2:value};"
+    ],
     "description": "Declare a local variable"
   },
   "Constant": {
     "prefix": "const",
-    "body": ["const:local ${1:NAME} = ${2:value};"],
+    "body": [
+      "const:local ${1:NAME} = ${2:value};"
+    ],
     "description": "Declare a local constant"
   },
   "Module Variable": {
-    "prefix": "module",
-    "body": ["module.${1:name} = ${2:value};"],
+    "prefix": "mod",
+    "body": [
+      "module.${1:name} = ${2:value};"
+    ],
     "description": "Declare a global module variable"
   },
   "Function": {
     "prefix": "func",
     "body": [
       "func ${1:name}(${2:params}) do",
-      "\t${3:-- your code here}",
+      "\t${3:-- code here}",
       "end;"
     ],
     "description": "Define a function"
   },
-  "Function with return": {
+  "Function with Return": {
     "prefix": "funcr",
     "body": [
       "func ${1:name}(${2:params}) do",
-      "\t${3:-- your code here}",
+      "\t${3:-- code here}",
       "\treturn ${4:value};",
       "end;"
     ],
-    "description": "Define a function with a return value"
+    "description": "Define a function with return"
   },
-  "If statement": {
+  "If": {
     "prefix": "if",
     "body": [
       "if ${1:condition} do",
-      "\t${2:-- your code here}",
+      "\t${2:-- code here}",
       "end;"
     ],
     "description": "If statement"
   },
-  "If / Else": {
+  "If Else": {
     "prefix": "ife",
     "body": [
       "if ${1:condition} do",
-      "\t${2:-- your code here}",
+      "\t${2:-- code here}",
       "else do",
-      "\t${3:-- your code here}",
+      "\t${3:-- code here}",
       "end;"
     ],
-    "description": "If / else statement"
+    "description": "If else statement"
   },
-  "If / Else If / Else": {
+  "If Elseif Else": {
     "prefix": "ifee",
     "body": [
       "if ${1:condition} do",
-      "\t${2:-- your code here}",
-      "else if ${3:condition} do",
-      "\t${4:-- your code here}",
+      "\t${2:-- code here}",
+      "elseif ${3:condition} do",
+      "\t${4:-- code here}",
       "else do",
-      "\t${5:-- your code here}",
+      "\t${5:-- code here}",
       "end;"
     ],
-    "description": "If / else if / else statement"
+    "description": "If elseif else"
   },
-  "While loop": {
+  "While Loop": {
     "prefix": "while",
     "body": [
       "while ${1:condition} do",
-      "\t${2:-- your code here}",
+      "\t${2:-- code here}",
       "end;"
     ],
     "description": "While loop"
   },
-  "For loop": {
+  "For Loop": {
     "prefix": "for",
     "body": [
       "for ${1:i} = ${2:1} to ${3:10} do",
-      "\t${4:-- your code here}",
+      "\t${4:-- code here}",
       "end;"
     ],
     "description": "For loop"
   },
-  "For Each loop": {
+  "For Each": {
     "prefix": "foreach",
     "body": [
-      "for each ${1:item} in ${2:collection} do",
-      "\t${3:-- your code here}",
+      "for each ${1:item} in ${2:list} do",
+      "\t${3:-- code here}",
       "end;"
     ],
     "description": "For each loop"
   },
-  "Try / Catch": {
+  "Try Catch": {
     "prefix": "try",
     "body": [
       "try do",
-      "\t${1:-- your code here}",
-      "catch ${2:error} do",
-      "\tprint(\"Error: \" .. ${2:error});",
+      "\t${1:-- code here}",
+      "catch ${2:err} do",
+      "\tprint(\"Error: \" .. ${2:err});",
       "end;"
     ],
-    "description": "Try / catch error handling"
+    "description": "Try catch"
   },
   "Print": {
     "prefix": "print",
-    "body": ["print(${1:\"message\"});"],
+    "body": [
+      "print(${1:\"message\"});"
+    ],
     "description": "Print to console"
+  },
+  "Import": {
+    "prefix": "import",
+    "body": [
+      "import ${1:std.network};"
+    ],
+    "description": "Import a module"
   },
   "Datastore Save": {
     "prefix": "dssave",
@@ -116,41 +131,82 @@
       "\t${2:field}: ${3:value}",
       "});"
     ],
-    "description": "Save data to datastore"
+    "description": "Save to datastore"
   },
   "Datastore Load": {
     "prefix": "dsload",
     "body": [
       "var:local ${1:data} = datastore.load(\"${2:key}\");",
       "if datastore.exists(\"${2:key}\") do",
-      "\t${3:-- use data here}",
+      "\t${3:-- use data}",
       "else do",
-      "\t-- no save data found",
+      "\t-- no save found",
       "end;"
     ],
-    "description": "Load data from datastore"
+    "description": "Load from datastore"
   },
-  "Server Script Header": {
+  "Network onConnect": {
+    "prefix": "onconnect",
+    "body": [
+      "network.onConnect(func(player) do",
+      "\t${1:-- player connected}",
+      "end);"
+    ],
+    "description": "Handle player connect"
+  },
+  "Network onDisconnect": {
+    "prefix": "ondisconnect",
+    "body": [
+      "network.onDisconnect(func(player) do",
+      "\t${1:-- player disconnected}",
+      "end);"
+    ],
+    "description": "Handle player disconnect"
+  },
+  "Network broadcast": {
+    "prefix": "broadcast",
+    "body": [
+      "network.broadcast(\"${1:EventName}\", {",
+      "\t${2:key}: ${3:value}",
+      "});"
+    ],
+    "description": "Broadcast to all players"
+  },
+  "Network send": {
+    "prefix": "netsend",
+    "body": [
+      "network.send(${1:player}, \"${2:EventName}\", {",
+      "\t${3:key}: ${4:value}",
+      "});"
+    ],
+    "description": "Send to one player"
+  },
+  "Server Template": {
     "prefix": "server",
     "body": [
       "--[[",
       "  server.pros",
-      "  Proton# Multiplayer Server Script",
-      "  Run this file to host a multiplayer session.",
+      "  Proton# Multiplayer Server",
       "]]",
       "",
+      "import std.network;",
+      "",
+      "const:local MAX_PLAYERS = ${1:10};",
       "module.players = [];",
-      "module.maxPlayers = ${1:10};",
       "",
-      "func onPlayerJoin(player) do",
-      "\t${2:-- handle player join}",
-      "end;",
+      "network.onConnect(func(player) do",
+      "\tmodule.players.push(player);",
+      "\tnetwork.broadcastExcept(player, \"PlayerJoined\", { id: player.id, name: player.name });",
+      "\tnetwork.send(player, \"Welcome\", { yourId: player.id, players: module.players });",
+      "end);",
       "",
-      "func onPlayerLeave(player) do",
-      "\t${3:-- handle player leave}",
-      "end;"
+      "network.onDisconnect(func(player) do",
+      "\tvar:local idx = module.players.indexOf(player);",
+      "\tmodule.players.remove(idx);",
+      "\tnetwork.broadcast(\"PlayerLeft\", { id: player.id });",
+      "end);"
     ],
-    "description": "Multiplayer server script template"
+    "description": "Full server.pros template"
   },
   "Block Comment": {
     "prefix": "bcom",
@@ -161,14 +217,32 @@
     ],
     "description": "Block comment"
   },
-  "Backend Lua hint": {
+  "Backend Lua": {
     "prefix": "@lua",
-    "body": ["@lua"],
-    "description": "Force Lua backend for this block"
+    "body": [
+      "@lua"
+    ],
+    "description": "Route to Lua backend"
   },
-  "Backend Python hint": {
+  "Backend Python": {
     "prefix": "@python",
-    "body": ["@python"],
-    "description": "Force Python backend for this block"
+    "body": [
+      "@python"
+    ],
+    "description": "Route to Python backend"
+  },
+  "Backend CSharp": {
+    "prefix": "@csharp",
+    "body": [
+      "@csharp"
+    ],
+    "description": "Route to C# backend (GUI/Studio)"
+  },
+  "Backend JS": {
+    "prefix": "@js",
+    "body": [
+      "@js"
+    ],
+    "description": "Route to JavaScript backend (animations)"
   }
 }
