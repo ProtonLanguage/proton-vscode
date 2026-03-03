@@ -1,31 +1,120 @@
 {
-  "name": "Proton",
+  "name": "Proton#",
   "scopeName": "source.proton",
-  "fileTypes": ["pros"],
+  "fileTypes": [
+    "pros"
+  ],
   "patterns": [
-    { "include": "#comments" },
-    { "include": "#strings" },
-    { "include": "#keywords" },
-    { "include": "#types" },
-    { "include": "#constants" },
-    { "include": "#numbers" },
-    { "include": "#operators" },
-    { "include": "#functions" },
-    { "include": "#variables" },
-    { "include": "#module" },
-    { "include": "#backend-hints" }
+    {
+      "include": "#block-comment"
+    },
+    {
+      "include": "#line-comment"
+    },
+    {
+      "include": "#import"
+    },
+    {
+      "include": "#backend-routing"
+    },
+    {
+      "include": "#strings"
+    },
+    {
+      "include": "#declaration-keywords"
+    },
+    {
+      "include": "#control-keywords"
+    },
+    {
+      "include": "#logical-keywords"
+    },
+    {
+      "include": "#network-api"
+    },
+    {
+      "include": "#std-libs"
+    },
+    {
+      "include": "#builtin-functions"
+    },
+    {
+      "include": "#datastore-api"
+    },
+    {
+      "include": "#module-vars"
+    },
+    {
+      "include": "#math-api"
+    },
+    {
+      "include": "#string-api"
+    },
+    {
+      "include": "#array-api"
+    },
+    {
+      "include": "#func-declaration"
+    },
+    {
+      "include": "#func-call"
+    },
+    {
+      "include": "#constants"
+    },
+    {
+      "include": "#numbers"
+    },
+    {
+      "include": "#types"
+    },
+    {
+      "include": "#operators"
+    }
   ],
   "repository": {
-    "comments": {
+    "block-comment": {
+      "name": "comment.block.proton",
+      "begin": "--\\[\\[",
+      "end": "\\]\\]",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.comment.begin.proton"
+        }
+      },
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.comment.end.proton"
+        }
+      }
+    },
+    "line-comment": {
+      "name": "comment.line.double-dash.proton",
+      "match": "--.*$"
+    },
+    "import": {
       "patterns": [
         {
-          "name": "comment.block.proton",
-          "begin": "--\\[\\[",
-          "end": "\\]\\]"
+          "match": "\\b(import)\\s+(std\\.[a-zA-Z_][a-zA-Z0-9_.]*)",
+          "captures": {
+            "1": {
+              "name": "keyword.control.import.proton"
+            },
+            "2": {
+              "name": "support.module.proton"
+            }
+          }
         },
         {
-          "name": "comment.line.double-dash.proton",
-          "match": "--.*$"
+          "match": "\\b(import)\\s+([a-zA-Z_][a-zA-Z0-9_.]*)",
+          "captures": {
+            "1": {
+              "name": "keyword.control.import.proton"
+            },
+            "2": {
+              "name": "entity.name.namespace.proton"
+            }
+          }
         }
       ]
     },
@@ -55,37 +144,148 @@
         }
       ]
     },
-    "keywords": {
+    "declaration-keywords": {
+      "name": "storage.type.proton",
+      "match": "\\b(var:local|const:local|var|const|func|class|extends)\\b"
+    },
+    "control-keywords": {
+      "name": "keyword.control.proton",
+      "match": "\\b(if|else|elseif|while|for|each|in|to|do|end|return|break|continue|try|catch|throw|new|self)\\b"
+    },
+    "logical-keywords": {
+      "name": "keyword.operator.logical.proton",
+      "match": "\\b(and|or|not)\\b"
+    },
+    "network-api": {
       "patterns": [
         {
-          "name": "keyword.control.proton",
-          "match": "\\b(if|else|while|for|each|in|to|do|end|return|break|continue|try|catch|throw)\\b"
+          "match": "\\b(network)\\.(onConnect|onDisconnect|onMessage|broadcast|broadcastExcept|send|connect|disconnect|listen|close|getPlayers)\\b",
+          "captures": {
+            "1": {
+              "name": "support.class.proton"
+            },
+            "2": {
+              "name": "support.function.network.proton"
+            }
+          }
         },
         {
-          "name": "keyword.declaration.proton",
-          "match": "\\b(var|var:local|const|const:local|func|module)\\b"
+          "match": "\\b(player)\\.(name|id|ip|data|ping|connected)\\b",
+          "captures": {
+            "1": {
+              "name": "variable.parameter.proton"
+            },
+            "2": {
+              "name": "variable.other.property.proton"
+            }
+          }
         },
         {
-          "name": "keyword.operator.logical.proton",
-          "match": "\\b(and|or|not)\\b"
+          "match": "\\bnetwork\\b",
+          "name": "support.class.proton"
         }
       ]
     },
-    "types": {
-      "name": "support.type.proton",
-      "match": "\\b(int|float|string|bool|array|table)\\b"
+    "std-libs": {
+      "match": "\\b(std)\\.([a-zA-Z_][a-zA-Z0-9_]*)",
+      "captures": {
+        "1": {
+          "name": "support.module.proton"
+        },
+        "2": {
+          "name": "support.class.proton"
+        }
+      }
+    },
+    "builtin-functions": {
+      "name": "support.function.builtin.proton",
+      "match": "\\b(print|typeof|tostring|toint|tofloat|tobool|len|wait|random|input|exit|assert|error|pcall|require)\\b(?=\\s*\\()"
+    },
+    "datastore-api": {
+      "match": "\\b(datastore)\\.(save|load|exists|delete|list)\\b",
+      "captures": {
+        "1": {
+          "name": "support.class.proton"
+        },
+        "2": {
+          "name": "support.function.datastore.proton"
+        }
+      }
+    },
+    "module-vars": {
+      "match": "\\b(module)\\.([a-zA-Z_][a-zA-Z0-9_]*)\\b",
+      "captures": {
+        "1": {
+          "name": "keyword.other.module.proton"
+        },
+        "2": {
+          "name": "variable.other.module.proton"
+        }
+      }
+    },
+    "math-api": {
+      "match": "\\b(math)\\.(huge|pi|floor|ceil|abs|sqrt|pow|max|min|round|sin|cos|tan|log|random|clamp)\\b",
+      "captures": {
+        "1": {
+          "name": "support.class.proton"
+        },
+        "2": {
+          "name": "support.function.math.proton"
+        }
+      }
+    },
+    "string-api": {
+      "match": "\\b([a-zA-Z_][a-zA-Z0-9_]*)\\.(upper|lower|sub|find|replace|split|trim|startsWith|endsWith|contains|format|byte|char)\\b",
+      "captures": {
+        "1": {
+          "name": "variable.other.proton"
+        },
+        "2": {
+          "name": "support.function.string.proton"
+        }
+      }
+    },
+    "array-api": {
+      "match": "\\b([a-zA-Z_][a-zA-Z0-9_]*)\\.(push|pop|shift|unshift|indexOf|remove|insert|contains|reverse|sort|slice|join|map|filter|forEach)\\b",
+      "captures": {
+        "1": {
+          "name": "variable.other.proton"
+        },
+        "2": {
+          "name": "support.function.array.proton"
+        }
+      }
+    },
+    "func-declaration": {
+      "match": "\\b(func)\\s+([a-zA-Z_][a-zA-Z0-9_]*)",
+      "captures": {
+        "1": {
+          "name": "storage.type.function.proton"
+        },
+        "2": {
+          "name": "entity.name.function.proton"
+        }
+      }
+    },
+    "func-call": {
+      "match": "\\b([a-zA-Z_][a-zA-Z0-9_]*)(?=\\s*\\()",
+      "captures": {
+        "1": {
+          "name": "entity.name.function.call.proton"
+        }
+      }
     },
     "constants": {
-      "patterns": [
-        {
-          "name": "constant.language.proton",
-          "match": "\\b(true|false|null|math\\.huge)\\b"
-        }
-      ]
+      "name": "constant.language.proton",
+      "match": "\\b(true|false|null|nil)\\b"
     },
     "numbers": {
       "name": "constant.numeric.proton",
       "match": "\\b([0-9]+\\.?[0-9]*)\\b"
+    },
+    "types": {
+      "name": "support.type.proton",
+      "match": "\\b(int|float|string|bool|array|table|any|void)\\b"
     },
     "operators": {
       "patterns": [
@@ -104,54 +304,30 @@
         {
           "name": "keyword.operator.string.proton",
           "match": "\\.\\."
+        },
+        {
+          "name": "punctuation.separator.proton",
+          "match": "[,]"
+        },
+        {
+          "name": "punctuation.brackets.proton",
+          "match": "[\\[\\]{}()]"
         }
       ]
     },
-    "functions": {
+    "backend-routing": {
       "patterns": [
         {
-          "name": "entity.name.function.proton",
-          "match": "\\b(func)\\s+([a-zA-Z_][a-zA-Z0-9_]*)",
+          "comment": "@lua @python @csharp @js backend routing directives \u2014 red in all themes",
+          "match": "^(@)(lua|python|csharp|js)\\b",
           "captures": {
-            "1": { "name": "keyword.declaration.proton" },
-            "2": { "name": "entity.name.function.proton" }
+            "1": {
+              "name": "markup.deleted.proton"
+            },
+            "2": {
+              "name": "markup.deleted.proton"
+            }
           }
-        },
-        {
-          "name": "support.function.builtin.proton",
-          "match": "\\b(print|typeof|tostring|toint|tofloat|len|wait|random)\\b(?=\\s*\\()"
-        },
-        {
-          "name": "support.function.datastore.proton",
-          "match": "\\b(datastore)\\.(save|load|exists|delete)\\b"
-        },
-        {
-          "name": "variable.function.proton",
-          "match": "\\b([a-zA-Z_][a-zA-Z0-9_]*)\\b(?=\\s*\\()"
-        }
-      ]
-    },
-    "variables": {
-      "patterns": [
-        {
-          "name": "variable.other.proton",
-          "match": "\\b([a-zA-Z_][a-zA-Z0-9_]*)\\b"
-        }
-      ]
-    },
-    "module": {
-      "patterns": [
-        {
-          "name": "variable.other.module.proton",
-          "match": "\\bmodule\\.[a-zA-Z_][a-zA-Z0-9_]*\\b"
-        }
-      ]
-    },
-    "backend-hints": {
-      "patterns": [
-        {
-          "name": "keyword.other.backend.proton",
-          "match": "^@(lua|python|csharp)\\b"
         }
       ]
     }
